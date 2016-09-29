@@ -1,0 +1,34 @@
+<div id="announcer" *ngIf="winner">
+    <div *ngIf="redTurn" [style.color]="'blue'">Blue wins</div>
+    <div *ngIf="!redTurn" [style.color]="'red'">Red wins</div>
+</div>s
+
+<div id="header">
+    <div [ngClass]="{'red-title': (redTurn && !winner) || (!redTurn && winner)}" class="title">Connect 4</div>
+    <div id="turn">
+        <h3 *ngIf="winner" class="game-over">Game Over</h3>
+        <h3 *ngIf="redTurn && !winner" id="red-turn">Red Turn</h3>
+        <h3 *ngIf="!redTurn && !winner" id="blue-turn">Blue Turn</h3>
+    </div>
+</div>
+
+<div *ngIf="redTurn" id="red-column-selector-wrapper">
+    <div id="red-column-selector" *ngFor="let column of columns; let i = index" (click)="dropPiece(i, 0)"></div>
+</div>
+<div *ngIf="!redTurn" id="blue-column-selector-wrapper">
+    <div id="blue-column-selector" *ngFor="let column of columns; let i = index" (click)="dropPiece(i, 0)"></div>
+</div>
+
+
+<div class="board" [ngClass]="{'red-border': redTurn && !winner }"
+     [class.blue-border]="!redTurn && !winner" [class.winner]="winner">
+    <div [class.column-active]="score[i][0] == 0" class="column" *ngFor="let column of score; let i = index" (click)="dropPiece(i)">
+        <div class="row" *ngFor="let row of column; let j = index">
+            <div class="cell active-cell-blue" *ngIf="score[i][j] === 2"></div>
+            <div class="cell active-cell-red" *ngIf="score[i][j] === 1"></div>
+            <div class="cell" *ngIf="score[i][j] === 0"></div>
+        </div>
+    </div>
+</div>
+
+<button class="restart" (click)="restart()">Restart Game</button>

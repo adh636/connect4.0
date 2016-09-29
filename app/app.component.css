@@ -1,0 +1,10 @@
+.app {
+    height: 100%;
+}
+
+#title {
+    color: black;
+    font-family: 'Baloo Bhaina', cursive;
+    font-size: 55px;
+    text-align: center;
+}
