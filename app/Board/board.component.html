@@ -1,7 +1,7 @@
 <div id="announcer" *ngIf="winner">
     <div *ngIf="redTurn" [style.color]="'blue'">Blue wins</div>
     <div *ngIf="!redTurn" [style.color]="'red'">Red wins</div>
-</div>s
+</div>
 
 <div id="header">
     <div [ngClass]="{'red-title': (redTurn && !winner) || (!redTurn && winner)}" class="title">Connect 4</div>
@@ -12,13 +12,12 @@
     </div>
 </div>
 
-<div *ngIf="redTurn" id="red-column-selector-wrapper">
-    <div id="red-column-selector" *ngFor="let column of columns; let i = index" (click)="dropPiece(i, 0)"></div>
-</div>
-<div *ngIf="!redTurn" id="blue-column-selector-wrapper">
-    <div id="blue-column-selector" *ngFor="let column of columns; let i = index" (click)="dropPiece(i, 0)"></div>
-</div>
-
+<!--<div *ngIf="redTurn" id="red-column-selector-wrapper">-->
+    <!--<div id="red-column-selector" *ngFor="let column of columns; let i = index" (click)="dropPiece(i, 0)"></div>-->
+<!--</div>-->
+<!--<div *ngIf="!redTurn" id="blue-column-selector-wrapper">-->
+    <!--<div id="blue-column-selector" *ngFor="let column of columns; let i = index" (click)="dropPiece(i, 0)"></div>-->
+<!--</div>-->
 
 <div class="board" [ngClass]="{'red-border': redTurn && !winner }"
      [class.blue-border]="!redTurn && !winner" [class.winner]="winner">
