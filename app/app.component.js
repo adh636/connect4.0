@@ -16,12 +16,10 @@ var AppComponent = (function () {
         this.blueBackground = "#9FD2E6";
     }
     AppComponent.prototype.changeBackground = function (redTurn) {
-        if (redTurn) {
+        if (redTurn)
             this.playerBackground = this.redBackground;
-        }
-        else {
+        else
             this.playerBackground = this.blueBackground;
-        }
     };
     __decorate([
         core_1.Input(), 

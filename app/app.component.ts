@@ -14,12 +14,7 @@ export class AppComponent {
     blueBackground: string = "#9FD2E6";
 
     changeBackground(redTurn: boolean): void {
-        if (redTurn) {
-            this.playerBackground = this.redBackground;
-        }
-        else {
-            this.playerBackground = this.blueBackground;
-        }
+        if (redTurn) this.playerBackground = this.redBackground;
+        else this.playerBackground = this.blueBackground;
     }
-    
 }

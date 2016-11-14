@@ -32,7 +32,7 @@
     opacity: 1;
 }
 
-#turn *{
+#turn * {
     font-size: xx-large;
     color: white;
     display: inline-block;
@@ -93,10 +93,12 @@
 
 .active-cell-red {
     background: red;
+    opacity: 1 !important;
 }
 
 .active-cell-blue {
     background: blue;
+    opacity: 1 !important;
 }
 
 .restart {
