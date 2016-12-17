@@ -2,7 +2,6 @@
 node_modules/*
 typings/*
 .idea/*
-<<<<<<< HEAD
 app/*.js
 app/*.map
 app/spec/*.js
@@ -11,15 +10,4 @@ app/src/board/*.js
 app/src/player/*.js
 app/src/board/*.map
 app/src/player/*.map
-||||||| merged common ancestors
-spec/*.js
-spec/*.map
-src/*.js
-src/*.map
-=======
-app/board/src/*.js
-app/player/src/*.js
-app/board/src/*.map
-app/player/src/*.map
->>>>>>> e42c0c43a4395a79ac80332448c7d952d00a2d74
 coverage/*
