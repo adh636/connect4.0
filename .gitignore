@@ -2,8 +2,10 @@
 node_modules/*
 typings/*
 .idea/*
-spec/*.js
-spec/*.map
-src/*.js
-src/*.map
+app/spec/*.js
+app/spec/*.map
+app/board/src/*.js
+app/player/src/*.js
+app/board/src/*.map
+app/player/src/*.map
 coverage/*
