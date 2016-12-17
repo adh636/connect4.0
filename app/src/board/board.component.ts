@@ -1,13 +1,13 @@
 import {Component, Output, EventEmitter} from "@angular/core";
 
-import {Player} from "./player";
+import {Player} from "../player/player";
 import {Board} from "./board";
-import {BluePlayer} from "./blue-player";
+import {BluePlayer} from "../player/blue-player";
 
 @Component({
     selector: "c4-board",
-    templateUrl: "app/src/board.component.html",
-    styleUrls: ["app/src/board.component.css"]
+    templateUrl: "app/src/board/board.component.html",
+    styleUrls: ["app/src/board/board.component.css"]
 })
 
 export class BoardComponent {

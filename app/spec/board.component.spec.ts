@@ -1,4 +1,4 @@
-import {BoardComponent} from "../src/board.component";
+import {BoardComponent} from "../src/board/board.component";
 
 describe("connect 4", () => {
     let connect4: BoardComponent;

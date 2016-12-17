@@ -1,5 +1,5 @@
 import {Player} from "./player";
-import {Board} from "./board";
+import {Board} from "../board/board";
 
 export class BlueWinner implements Player {
     getState(): string {

@@ -10,7 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require("@angular/core");
 var board_1 = require("./board");
-var blue_player_1 = require("./blue-player");
+var blue_player_1 = require("../player/blue-player");
 var BoardComponent = (function () {
     function BoardComponent() {
         this.changeBackground = new core_1.EventEmitter();
@@ -61,8 +61,8 @@ var BoardComponent = (function () {
     BoardComponent = __decorate([
         core_1.Component({
             selector: "c4-board",
-            templateUrl: "app/src/board.component.html",
-            styleUrls: ["app/src/board.component.css"]
+            templateUrl: "app/src/board/board.component.html",
+            styleUrls: ["app/src/board/board.component.css"]
         }), 
         __metadata('design:paramtypes', [])
     ], BoardComponent);

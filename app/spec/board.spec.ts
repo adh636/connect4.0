@@ -1,4 +1,4 @@
-import {Board} from "../src/board";
+import {Board} from "../src/board/board";
 
 describe("connect 4", () => {
     let board: Board;

@@ -1,5 +1,5 @@
 "use strict";
-var board_component_1 = require("../src/board.component");
+var board_component_1 = require("../src/board/board.component");
 describe("connect 4", function () {
     var connect4;
     beforeEach(function () {

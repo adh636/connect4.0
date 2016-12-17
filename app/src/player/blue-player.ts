@@ -1,5 +1,5 @@
 import {Player} from "./player";
-import {Board} from "./board";
+import {Board} from "../board/board";
 import {RedPlayer} from "./red-player";
 import {BlueWinner} from "./blue-winner";
 
