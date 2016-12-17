@@ -1,12 +1,12 @@
 "use strict";
-var board_service_1 = require("../src/board.service");
+var board_1 = require("../src/board");
 describe("connect 4", function () {
-    var boardService;
+    var board;
     beforeEach(function () {
-        boardService = new board_service_1.BoardService();
+        board = new board_1.Board();
     });
     it("should detect 4 in a row vertically", function () {
-        var board = [
+        board.boardState = [
             [0, 0, 1, 1, 1, 1],
             [0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0],
@@ -15,10 +15,10 @@ describe("connect 4", function () {
             [0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0],
         ];
-        expect(boardService.checkForVerticalWinner(board)).toBeTruthy();
+        expect(board.checkForVerticalWinner(1)).toBeTruthy();
     });
     it("should detect 4 in a row horizontally", function () {
-        var board = [
+        board.boardState = [
             [0, 0, 1, 0, 0, 0],
             [0, 0, 1, 0, 0, 0],
             [0, 0, 1, 0, 0, 0],
@@ -27,10 +27,10 @@ describe("connect 4", function () {
             [0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0],
         ];
-        expect(boardService.checkForHorizontalWinner(board)).toBeTruthy();
+        expect(board.checkForHorizontalWinner(1)).toBeTruthy();
     });
     it("should detect 4 in a row downward diagonally", function () {
-        var board = [
+        board.boardState = [
             [0, 0, 0, 0, 0, 0],
             [0, 0, 0, 1, 0, 0],
             [0, 0, 1, 0, 0, 0],
@@ -39,10 +39,10 @@ describe("connect 4", function () {
             [0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0],
         ];
-        expect(boardService.checkForDownwardDiagonalWinner(board)).toBeTruthy();
+        expect(board.checkForDownwardDiagonalWinner(1)).toBeTruthy();
     });
     it("should detect 4 in a row upward diagonally", function () {
-        var board = [
+        board.boardState = [
             [0, 0, 0, 0, 0, 0],
             [0, 1, 0, 0, 0, 0],
             [0, 0, 1, 0, 0, 0],
@@ -51,10 +51,10 @@ describe("connect 4", function () {
             [0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0],
         ];
-        expect(boardService.checkForUpwardDiagonalWinner(board)).toBeTruthy();
+        expect(board.checkForUpwardDiagonalWinner(1)).toBeTruthy();
     });
     it("should detect 4 in a row anywhere on board", function () {
-        var board = [
+        board.boardState = [
             [0, 0, 0, 0, 0, 0],
             [0, 1, 0, 0, 0, 0],
             [0, 0, 1, 0, 0, 2],
@@ -63,7 +63,7 @@ describe("connect 4", function () {
             [0, 0, 2, 0, 0, 0],
             [0, 0, 0, 0, 0, 0],
         ];
-        expect(boardService.checkForWinner(board)).toBeTruthy();
+        expect(board.checkForWinner(2)).toBeTruthy();
     });
 });
-//# sourceMappingURL=board.service.spec.js.map
+//# sourceMappingURL=board.spec.js.map

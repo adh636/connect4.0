@@ -9,61 +9,50 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
-var board_service_1 = require("./board.service");
+var board_1 = require("./board");
+var blue_player_1 = require("./blue-player");
 var BoardComponent = (function () {
-    function BoardComponent(boardService) {
-        this.boardService = boardService;
-        this.numMoves = 0;
+    function BoardComponent() {
         this.changeBackground = new core_1.EventEmitter();
+        this.currentPlayer = new blue_player_1.BluePlayer();
+        this.board = new board_1.Board();
     }
-    BoardComponent.prototype.ngOnInit = function () {
-        this.board = this.boardService.getBoard();
-    };
-    BoardComponent.prototype.activeCell = function (cell) {
-        if (cell == 1)
-            return "cell active-cell-red";
-        if (cell == 2)
-            return "cell active-cell-blue";
-        return "cell";
-    };
     BoardComponent.prototype.dropPiece = function (column) {
-        if (this.winner)
-            return;
-        for (var row = 5; row >= 0; row--) {
-            if (this.cellEmpty(column, row)) {
-                this.fillCell(column, row);
-                this.numMoves++;
-                if (this.boardService.checkForWinner(this.board)) {
-                    this.winner = true;
-                    return;
-                }
-                this.redTurn = !this.redTurn;
-                this.changeBackground.emit(this.redTurn);
-                return;
-            }
-        }
-    };
-    BoardComponent.prototype.cellEmpty = function (column, i) {
-        return this.board[column][i] === 0;
-    };
-    BoardComponent.prototype.fillCell = function (column, i) {
-        if (this.redTurn) {
-            this.board[column][i] += 1;
-        }
-        else {
-            this.board[column][i] += 2;
-        }
+        this.currentPlayer = this.currentPlayer.dropPiece(this.board, column);
+        this.changeBackground.emit(this.currentPlayer.getState());
     };
     BoardComponent.prototype.restart = function () {
-        this.resetBoard();
-        this.numMoves = 0;
-        this.winner = false;
-        this.redTurn = false;
-        this.changeBackground.emit(this.redTurn);
+        this.board = new board_1.Board();
+        this.currentPlayer = new blue_player_1.BluePlayer();
+        this.changeBackground.emit(this.currentPlayer.getState());
     };
-    BoardComponent.prototype.resetBoard = function () {
-        this.boardService.clearBoard();
-        this.board = this.boardService.getBoard();
+    BoardComponent.prototype.playerTurn = function () {
+        if (this.currentPlayer.getState().includes("Blue"))
+            return "blue-turn";
+        return "red-turn";
+    };
+    BoardComponent.prototype.boardStyle = function () {
+        if (this.currentPlayer.getState().includes("Red"))
+            return "red-border";
+    };
+    BoardComponent.prototype.isActiveColumn = function (column) {
+        return this.board.boardState[column][0] == 0
+            && !this.currentPlayer.getState().includes('Wins');
+    };
+    BoardComponent.prototype.playerColor = function () {
+        if (this.currentPlayer.getState().includes("Blue"))
+            return "Blue";
+        return "Red";
+    };
+    BoardComponent.prototype.isWinner = function () {
+        return this.currentPlayer.getState().includes("Wins");
+    };
+    BoardComponent.prototype.activeCell = function (cell) {
+        if (cell === 1)
+            return "cell active-cell-red";
+        if (cell === 2)
+            return "cell active-cell-blue";
+        return "cell";
     };
     __decorate([
         core_1.Output(), 
@@ -73,10 +62,9 @@ var BoardComponent = (function () {
         core_1.Component({
             selector: "c4-board",
             templateUrl: "app/src/board.component.html",
-            styleUrls: ["app/src/board.component.css"],
-            providers: [board_service_1.BoardService]
+            styleUrls: ["app/src/board.component.css"]
         }), 
-        __metadata('design:paramtypes', [board_service_1.BoardService])
+        __metadata('design:paramtypes', [])
     ], BoardComponent);
     return BoardComponent;
 }());

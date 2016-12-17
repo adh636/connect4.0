@@ -1,12 +1,12 @@
-import {BoardService} from "../src/board.service";
+import {Board} from "../src/board";
 
 describe("connect 4", () => {
-    let boardService: BoardService;
+    let board: Board;
     beforeEach(() => {
-        boardService = new BoardService();
+        board = new Board();
     });
     it("should detect 4 in a row vertically", () => {
-        let board = [
+        board.boardState = [
             [0,0,1,1,1,1],
             [0,0,0,0,0,0],
             [0,0,0,0,0,0],
@@ -15,10 +15,10 @@ describe("connect 4", () => {
             [0,0,0,0,0,0],
             [0,0,0,0,0,0],
         ];
-        expect(boardService.checkForVerticalWinner(board)).toBeTruthy();
+        expect(board.checkForVerticalWinner(1)).toBeTruthy();
     });
     it("should detect 4 in a row horizontally", () => {
-        let board = [
+        board.boardState = [
             [0,0,1,0,0,0],
             [0,0,1,0,0,0],
             [0,0,1,0,0,0],
@@ -27,10 +27,10 @@ describe("connect 4", () => {
             [0,0,0,0,0,0],
             [0,0,0,0,0,0],
         ];
-        expect(boardService.checkForHorizontalWinner(board)).toBeTruthy();
+        expect(board.checkForHorizontalWinner(1)).toBeTruthy();
     });
     it("should detect 4 in a row downward diagonally", () => {
-        let board = [
+        board.boardState = [
             [0,0,0,0,0,0],
             [0,0,0,1,0,0],
             [0,0,1,0,0,0],
@@ -39,10 +39,10 @@ describe("connect 4", () => {
             [0,0,0,0,0,0],
             [0,0,0,0,0,0],
         ];
-        expect(boardService.checkForDownwardDiagonalWinner(board)).toBeTruthy();
+        expect(board.checkForDownwardDiagonalWinner(1)).toBeTruthy();
     });
     it("should detect 4 in a row upward diagonally", () => {
-        let board = [
+        board.boardState = [
             [0,0,0,0,0,0],
             [0,1,0,0,0,0],
             [0,0,1,0,0,0],
@@ -51,10 +51,10 @@ describe("connect 4", () => {
             [0,0,0,0,0,0],
             [0,0,0,0,0,0],
         ];
-        expect(boardService.checkForUpwardDiagonalWinner(board)).toBeTruthy();
+        expect(board.checkForUpwardDiagonalWinner(1)).toBeTruthy();
     });
     it("should detect 4 in a row anywhere on board", () => {
-        let board = [
+        board.boardState = [
             [0,0,0,0,0,0],
             [0,1,0,0,0,0],
             [0,0,1,0,0,2],
@@ -63,6 +63,6 @@ describe("connect 4", () => {
             [0,0,2,0,0,0],
             [0,0,0,0,0,0],
         ];
-        expect(boardService.checkForWinner(board)).toBeTruthy();
+        expect(board.checkForWinner(2)).toBeTruthy();
     });
 });

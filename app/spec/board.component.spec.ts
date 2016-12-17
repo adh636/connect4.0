@@ -1,10 +1,9 @@
 import {BoardComponent} from "../src/board.component";
-import {BoardService} from "../src/board.service";
 
 describe("connect 4", () => {
     let connect4: BoardComponent;
     beforeEach(() => {
-        connect4 = new BoardComponent(new BoardService);
+        connect4 = new BoardComponent();
         connect4.restart();
     });
     it("should add blue piece to board on first drop", () => {
@@ -18,7 +17,7 @@ describe("connect 4", () => {
             [0,0,0,0,0,0],
             [0,0,0,0,0,0],
         ];
-        expect(connect4.board).toEqual(expectedBoard);
+        expect(connect4.board.boardState).toEqual(expectedBoard);
     });
     it("should add red piece to board on second drop", () => {
         connect4.dropPiece(0);
@@ -32,7 +31,7 @@ describe("connect 4", () => {
             [0,0,0,0,0,0],
             [0,0,0,0,0,0],
         ];
-        expect(connect4.board).toEqual(expectedBoard);
+        expect(connect4.board.boardState).toEqual(expectedBoard);
     });
     it("should do nothing when trying to drop a piece in a full column", () => {
         connect4.dropPiece(0);
@@ -51,6 +50,6 @@ describe("connect 4", () => {
             [0,0,0,0,0,0],
             [0,0,0,0,0,0],
         ];
-        expect(connect4.board).toEqual(expectedBoard);
+        expect(connect4.board.boardState).toEqual(expectedBoard);
     });
 });

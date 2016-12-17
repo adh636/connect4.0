@@ -1,79 +1,64 @@
-import { Component, Output, EventEmitter } from "@angular/core";
+import {Component, Output, EventEmitter} from "@angular/core";
 
-import { BoardService } from "./board.service";
+import {Player} from "./player";
+import {Board} from "./board";
+import {BluePlayer} from "./blue-player";
 
 @Component({
     selector: "c4-board",
     templateUrl: "app/src/board.component.html",
-    styleUrls: ["app/src/board.component.css"],
-    providers: [BoardService]
+    styleUrls: ["app/src/board.component.css"]
 })
 
 export class BoardComponent {
     @Output() changeBackground: EventEmitter<any>;
 
-    board: number[][];
-    redTurn: boolean;
-    winner: boolean;
-    numMoves: number = 0;
+    currentPlayer: Player;
+    board: Board;
 
-    constructor(private boardService: BoardService) {
+    constructor() {
         this.changeBackground = new EventEmitter<any>();
-    }
-
-    ngOnInit(): void {
-        this.board = this.boardService.getBoard();
-    }
-
-    static activeCell(cell: any): string {
-        if (cell == 1)
-            return "cell active-cell-red";
-        if (cell == 2)
-            return "cell active-cell-blue";
-        return "cell";
+        this.currentPlayer = new BluePlayer();
+        this.board = new Board();
     }
 
     dropPiece(column: number): void {
-        if (this.winner) return;
-
-        for (let row: number = 5; row >= 0; row--) {
-            if (this.cellEmpty(column, row)) {
-                this.fillCell(column, row);
-                this.numMoves++;
-                if(this.boardService.checkForWinner(this.board)) {
-                    this.winner = true;
-                    return;
-                }
-                this.redTurn = !this.redTurn;
-                this.changeBackground.emit(this.redTurn);
-                return;
-            }
-        }
-    }
-
-    private cellEmpty(column: number, i: number) {
-        return this.board[column][i] === 0;
-    }
-
-    private fillCell(column: number, i: number) {
-        if (this.redTurn) {
-            this.board[column][i] += 1;
-        }
-        else {
-            this.board[column][i] += 2;
-        }
+        this.currentPlayer = this.currentPlayer.dropPiece(this.board, column);
+        this.changeBackground.emit(this.currentPlayer.getState());
     }
 
     restart(): void {
-        this.resetBoard();
-        this.numMoves = 0;
-        this.winner = false;
-        this.redTurn = false;
-        this.changeBackground.emit(this.redTurn);
+        this.board = new Board();
+        this.currentPlayer = new BluePlayer();
+        this.changeBackground.emit(this.currentPlayer.getState());
     }
 
-    private resetBoard(): void {
-        this.boardService.clearBoard();
-        this.board = this.boardService.getBoard();
+    playerTurn(): string {
+        if (this.currentPlayer.getState().includes("Blue")) return "blue-turn";
+        return "red-turn";
+    }
+
+    boardStyle(): string {
+        if (this.currentPlayer.getState().includes("Red")) return "red-border";
+    }
+
+    isActiveColumn(column: number): boolean {
+        return this.board.boardState[column][0] == 0
+            && !this.currentPlayer.getState().includes('Wins')
+    }
+
+    playerColor(): string {
+        if (this.currentPlayer.getState().includes("Blue")) return "Blue";
+        return "Red";
+    }
+
+    isWinner(): boolean {
+        return this.currentPlayer.getState().includes("Wins");
+    }
+
+    activeCell(cell: number): string {
+        if (cell === 1) return "cell active-cell-red";
+        if (cell === 2) return "cell active-cell-blue";
+        return "cell";
     }
 }

@@ -11,8 +11,8 @@ export class AppComponent {
     RED_BACKGROUND: string = "#FFE7EE";
     BLUE_BACKGROUND: string = "#E1DEFF";
 
-    changeBackground(redTurn: boolean): void {
-        if (redTurn) this.playerBackground = this.RED_BACKGROUND;
+    changeBackground(gameState: string): void {
+        if (gameState.includes("Red")) this.playerBackground = this.RED_BACKGROUND;
         else this.playerBackground = this.BLUE_BACKGROUND;
     }
 }

@@ -15,8 +15,8 @@ var AppComponent = (function () {
         this.RED_BACKGROUND = "#FFE7EE";
         this.BLUE_BACKGROUND = "#E1DEFF";
     }
-    AppComponent.prototype.changeBackground = function (redTurn) {
-        if (redTurn)
+    AppComponent.prototype.changeBackground = function (gameState) {
+        if (gameState.includes("Red"))
             this.playerBackground = this.RED_BACKGROUND;
         else
             this.playerBackground = this.BLUE_BACKGROUND;

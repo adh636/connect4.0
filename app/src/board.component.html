@@ -1,25 +1,21 @@
 <div class="header">
-    <div class="title" [class.red-title]="redTurn">Connect 4</div>
+    <div class="title" [class.red-title]="playerColor() === 'Red'">Connect 4</div>
     <div class="turn">
-        <h3 class="game-over" *ngIf="winner || numMoves === 42">Game Over</h3>
-        <h3 class="red-turn" *ngIf="redTurn && !winner && numMoves < 42">Red Turn</h3>
-        <h3 class="blue-turn" *ngIf="!redTurn && !winner && numMoves < 42">Blue Turn</h3>
+        <h3 [ngClass]="playerTurn()" class="game-state">{{currentPlayer.getState()}}</h3>
     </div>
 </div>
 
-<div class="board" [class.red-border]="redTurn" [class.winner]="winner || numMoves === 42">
-    <div class="column" [class.column-active]="column[0] == 0" *ngFor="let column of board, let i = index" (click)="dropPiece(i)">
+<div class="board" [ngClass]="boardStyle()">
+    <div class="column" *ngFor="let column of board.boardState, let i = index"
+         [class.column-active]="isActiveColumn(i)" (click)="dropPiece(i)">
         <div class="row" *ngFor="let cell of column">
             <div [ngClass]="activeCell(cell)"></div>
-            <!--<div class="cell" [class.active-cell-red]="cell === 1" [class.active-cell-blue]="cell === 2"></div>-->
         </div>
     </div>
 </div>
 
 <button class="restart" (click)="restart()">Restart Game</button>
 
-<div class="announcer" *ngIf="winner || numMoves == 42">
-    <div *ngIf="!redTurn && winner" [style.color]="'blue'">Blue Wins!</div>
-    <div *ngIf="redTurn && winner" [style.color]="'red'">Red Wins!</div>
-    <div *ngIf="!winner" [style.color]="'white'">Tie Game</div>
+<div class="announcer" *ngIf="isWinner()">
+    <div [style.color]="playerColor()">{{currentPlayer.getState()}}</div>
 </div>
