@@ -11,20 +11,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require("@angular/core");
 var AppComponent = (function () {
     function AppComponent() {
-        this.playerBackground = "#9FD2E6";
-        this.redBackground = "#FFDBD6";
-        this.blueBackground = "#9FD2E6";
+        this.playerBackground = "#E1DEFF";
+        this.RED_BACKGROUND = "#FFE7EE";
+        this.BLUE_BACKGROUND = "#E1DEFF";
     }
     AppComponent.prototype.changeBackground = function (redTurn) {
         if (redTurn)
-            this.playerBackground = this.redBackground;
+            this.playerBackground = this.RED_BACKGROUND;
         else
-            this.playerBackground = this.blueBackground;
+            this.playerBackground = this.BLUE_BACKGROUND;
     };
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', Boolean)
-    ], AppComponent.prototype, "redTurn", void 0);
     AppComponent = __decorate([
         core_1.Component({
             selector: "my-app",

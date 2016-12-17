@@ -1,4 +1,4 @@
-import {Component, Input} from "@angular/core";
+import {Component} from "@angular/core";
 
 @Component({
     selector: "my-app",
@@ -7,14 +7,12 @@ import {Component, Input} from "@angular/core";
 })
 
 export class AppComponent {
-    @Input() redTurn: boolean;
-
-    playerBackground: string = "#9FD2E6";
-    redBackground: string = "#FFDBD6";
-    blueBackground: string = "#9FD2E6";
+    playerBackground: string = "#E1DEFF";
+    RED_BACKGROUND: string = "#FFE7EE";
+    BLUE_BACKGROUND: string = "#E1DEFF";
 
     changeBackground(redTurn: boolean): void {
-        if (redTurn) this.playerBackground = this.redBackground;
-        else this.playerBackground = this.blueBackground;
+        if (redTurn) this.playerBackground = this.RED_BACKGROUND;
+        else this.playerBackground = this.BLUE_BACKGROUND;
     }
 }

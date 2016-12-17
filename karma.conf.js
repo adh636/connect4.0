@@ -14,7 +14,7 @@ module.exports = function(config) {
 
         // list of files / patterns to load in the browser
         files: [
-            'spec/*.js'
+            'app/spec/*.js'
         ],
 
 
@@ -23,12 +23,19 @@ module.exports = function(config) {
         ],
 
         systemjs: {
-            configFile: 'system.conf.js',
+            configFile: 'systemjs.config.js',
 
             serveFiles: [
-                'src/**/*.js',
+                'app/src/**/*.js',
                 'node_modules/**/*.js'
             ],
+
+            includeFiles: [
+                'node_modules/zone.js/dist/zone.js',
+                'node_modules/reflect-metadata/Reflect.js',
+                'node_modules/core-js/client/shim.min.js'
+            ],
+
             config: {
                 transpiler: null
             }

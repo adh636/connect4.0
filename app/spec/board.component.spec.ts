@@ -1,9 +1,16 @@
-import {BoardComponent} from "../Board/board.component";
+import {BoardComponent} from "../src/board.component";
+import {BoardService} from "../src/board.service";
+
 describe("connect 4", () => {
-    it("should detect 4 in a row vertically", () => {
-        let connect4: BoardComponent = new BoardComponent();
-        connect4.score = [
-            [0,0,1,1,1,1],
+    let connect4: BoardComponent;
+    beforeEach(() => {
+        connect4 = new BoardComponent(new BoardService);
+        connect4.restart();
+    });
+    it("should add blue piece to board on first drop", () => {
+        connect4.dropPiece(0);
+        let expectedBoard = [
+            [0,0,0,0,0,2],
             [0,0,0,0,0,0],
             [0,0,0,0,0,0],
             [0,0,0,0,0,0],
@@ -11,7 +18,39 @@ describe("connect 4", () => {
             [0,0,0,0,0,0],
             [0,0,0,0,0,0],
         ];
-        connect4.checkForWinner();
-        expect(connect4.winner).toBeTruthy()
+        expect(connect4.board).toEqual(expectedBoard);
+    });
+    it("should add red piece to board on second drop", () => {
+        connect4.dropPiece(0);
+        connect4.dropPiece(0);
+        let expectedBoard = [
+            [0,0,0,0,1,2],
+            [0,0,0,0,0,0],
+            [0,0,0,0,0,0],
+            [0,0,0,0,0,0],
+            [0,0,0,0,0,0],
+            [0,0,0,0,0,0],
+            [0,0,0,0,0,0],
+        ];
+        expect(connect4.board).toEqual(expectedBoard);
+    });
+    it("should do nothing when trying to drop a piece in a full column", () => {
+        connect4.dropPiece(0);
+        connect4.dropPiece(0);
+        connect4.dropPiece(0);
+        connect4.dropPiece(0);
+        connect4.dropPiece(0);
+        connect4.dropPiece(0);
+        connect4.dropPiece(0);
+        let expectedBoard = [
+            [1,2,1,2,1,2],
+            [0,0,0,0,0,0],
+            [0,0,0,0,0,0],
+            [0,0,0,0,0,0],
+            [0,0,0,0,0,0],
+            [0,0,0,0,0,0],
+            [0,0,0,0,0,0],
+        ];
+        expect(connect4.board).toEqual(expectedBoard);
     });
 });

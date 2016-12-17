@@ -4,7 +4,7 @@
     margin-left: calc(50% - 310px);
 }
 
-#header {
+.header {
     display: flex;
     align-items: center;
     padding: 0 40px;
@@ -21,7 +21,6 @@
 
 .red-title {
     text-shadow: -2px 0 red,0 2px red,2px 0 red,0 -2px red;
-
 }
 
 .winner * {
@@ -32,7 +31,7 @@
     opacity: 1;
 }
 
-#turn * {
+.turn * {
     font-size: xx-large;
     color: white;
     display: inline-block;
@@ -41,16 +40,16 @@
     width: 165px;
 }
 
-#turn {
+.turn {
     margin-left: auto;
 }
 
-#red-turn {
+.red-turn {
     background: red;
     border: solid 2px black;
 }
 
-#blue-turn {
+.blue-turn {
     background: blue;
     border: solid 2px black;
 }
@@ -65,17 +64,13 @@
     padding: 10px;
     background: #f2ff09;
     border-radius: 25px;
-    border-bottom: 20px solid black;
-    border-left: 20px solid black;
-    border-right: 20px solid black;
+    border-bottom: 20px solid blue;
+    border-left: 20px solid blue;
+    border-right: 20px solid blue;
 }
 
 .red-border {
     border-color: red;
-}
-
-.blue-border {
-    border-color: blue;
 }
 
 .column-active:hover {
@@ -111,51 +106,12 @@
     cursor: pointer;
 }
 
-#announcer * {
+.announcer * {
     cursor: auto;
     font-family: 'Baloo Bhaina', cursive;
-    text-shadow: -2px 0 #000000,0 2px #000000,2px 0 #000000,0 -2px #000000;
+    text-shadow: -4px 0 #000000, 0 4px #000000, 4px 0 #000000, 0 -4px #000000;
     position: absolute;
     font-size: 100px;
-    left: calc(50% - 200px);
+    left: calc(50% - 230px);
     top: calc(50% - 150px);
 }
-
-
-
-
-/*#red-column-selector-wrapper {*/
-/*text-align: center;*/
-/*display: inline-flex;*/
-/*}*/
-
-/*#blue-column-selector-wrapper {*/
-/*text-align: center;*/
-/*display: inline-flex;*/
-/*}*/
-
-/*#red-column-selector {*/
-/*background: red;*/
-/*width: 60px;*/
-/*height: 60px;*/
-/*margin: 10px;*/
-/*border-radius: 50%;*/
-/*}*/
-
-/*#blue-column-selector {*/
-/*background: blue;*/
-/*width: 60px;*/
-/*height: 60px;*/
-/*margin: 10px;*/
-/*border-radius: 50%;*/
-/*}*/
-
-/*#red-column-selector:hover {*/
-/*opacity: .5;*/
-/*cursor: pointer;*/
-/*}*/
-
-/*#blue-column-selector:hover {*/
-/*opacity: .5;*/
-/*cursor: pointer;*/
-/*}*/
