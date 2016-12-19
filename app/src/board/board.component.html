@@ -1,7 +1,7 @@
 <div class="header">
     <div class="title" [class.red-title]="playerColor() === 'Red'">Connect 4</div>
     <div class="turn">
-        <h3 [ngClass]="playerTurn()" class="game-state">{{currentPlayer.getState()}}</h3>
+        <h3 class="game-state" [ngClass]="playerTurn()">{{currentPlayer.getState()}}</h3>
     </div>
 </div>
 
@@ -16,6 +16,6 @@
 
 <button class="restart" (click)="restart()">Restart Game</button>
 
-<div class="announcer" *ngIf="isWinner()">
+<div class="announcer" *ngIf="gameOver()">
     <div [style.color]="playerColor()">{{currentPlayer.getState()}}</div>
 </div>

@@ -1,4 +1,4 @@
-import {Player} from "./";
+import {Player} from "./player";
 import {Board} from "../board/board";
 
 export class RedWinner implements Player {

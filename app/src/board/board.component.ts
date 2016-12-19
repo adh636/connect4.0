@@ -12,7 +12,6 @@ import {BluePlayer} from "../player/blue-player";
 
 export class BoardComponent {
     @Output() changeBackground: EventEmitter<any>;
-
     currentPlayer: Player;
     board: Board;
 
@@ -52,7 +51,7 @@ export class BoardComponent {
         return "Red";
     }
 
-    isWinner(): boolean {
+    gameOver(): boolean {
         return this.currentPlayer.getState().includes("Wins");
     }
 
