@@ -1,23 +1,13 @@
-import {Player} from "./player";
-import {Board} from "../board/board";
-import {RedPlayer} from "./red-player";
+import {PlayerImpl} from "./player";
 import {BlueWinner} from "./blue-winner";
+import {RedPlayer} from "./red-player";
 
-export class BluePlayer implements Player {
-    getState(): string {
-        return "Blue Turn";
-    }
+export class BluePlayer extends PlayerImpl {
+    PLAYER_ID = 2;
+    stateDescription = "Blue Turn";
+    currentWinner = new BlueWinner();
 
-    dropPiece(board: Board, column: number): Player {
-        if (board.updateBoard(column, 2)) {
-            return this.updatePlayer(board);
-        }
-        return new BluePlayer();
-    }
-
-    updatePlayer(board: Board): Player {
-        let winnerFound = board.checkForWinner(2);
-        if (winnerFound) return new BlueWinner();
+    protected otherPlayer() {
         return new RedPlayer();
     }
  }
