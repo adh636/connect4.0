@@ -5,17 +5,33 @@
     </div>
 </div>
 
+<div style="position: fixed; left: 5px; overflow-y: auto">
+    <button (click)="toggleInstructorMode()" style="margin: 10px">Instructor Mode</button>
+    <div *ngFor="let turn of board, let i = index">
+        <div style="display: flex; font-size: x-small">
+            <i class="glyphicon glyphicon-user" *ngIf="i === turnNumber"></i><div [class.undone]="i > turnNumber" style="margin-left: 15px">{{turn.moveList[i]}}</div>
+        </div>
+    </div>
+    <div style="margin-top: 10px">
+        <button *ngIf="instructorMode" (click)="undoMove()">Undo Move</button>
+        <button *ngIf="instructorMode" (click)="redoMove()">Redo Move</button>
+    </div>
+</div>
+
 <div class="board" [ngClass]="boardStyle()">
-    <div class="column" *ngFor="let column of board.boardState, let i = index"
+    <div class="board-column" *ngFor="let column of board[turnNumber].boardState, let i = index"
          [class.column-active]="isActiveColumn(i)" (click)="dropPiece(i)">
-        <div class="row" *ngFor="let cell of column">
+        <div class="board-row" *ngFor="let cell of column">
             <div [ngClass]="activeCell(cell)"></div>
         </div>
     </div>
 </div>
 
+
 <button class="restart" (click)="restart()">Restart Game</button>
+
 
 <div class="announcer" *ngIf="gameOver()">
     <div [style.color]="playerColor()">{{currentPlayer.getState()}}</div>
 </div>
+

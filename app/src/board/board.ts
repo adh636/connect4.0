@@ -1,5 +1,6 @@
 export class Board {
     boardState: number[][];
+    moveList: string[] = [""];
 
     constructor() {
         this.boardState = [
@@ -14,8 +15,10 @@ export class Board {
     }
 
     updateBoard(column: number, player: number): boolean {
+        let playerName = player === 2 ? "Blue" : "Red";
         for (let row: number = 5; row >= 0; row--) {
             if (this.cellEmpty(column, row)) {
+                this.moveList.push(playerName + " plays in column " + (column + 1));
                 this.fillCell(column, row, player);
                 return true;
             }
@@ -27,7 +30,7 @@ export class Board {
         this.boardState[column][row] = player;
     }
 
-    private cellEmpty(column: number, i: number) {
+    cellEmpty(column: number, i: number) {
         return this.boardState[column][i] === 0;
     }
 

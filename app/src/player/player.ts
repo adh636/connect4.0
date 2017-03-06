@@ -1,16 +1,16 @@
 import {Board} from "../board/board";
-import {RedPlayer} from "./red-player";
-import {BluePlayer} from "./blue-player";
 
 export interface Player {
     dropPiece(board: Board, column: number): Player;
     getState(): string;
+    changePlayer(): Player;
 }
 
 export abstract class PlayerImpl {
     protected PLAYER_ID: number;
     protected stateDescription: string;
     protected currentWinner: Player;
+    protected abstract otherPlayer(): Player;
 
     getState(): string {
         return this.stateDescription;
@@ -29,5 +29,9 @@ export abstract class PlayerImpl {
         return this.otherPlayer();
     }
 
-    protected abstract otherPlayer(): Player;
+    changePlayer(): Player {
+        return this.otherPlayer();
+    }
+
+
 }

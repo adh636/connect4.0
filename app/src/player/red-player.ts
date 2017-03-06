@@ -10,4 +10,8 @@ export class RedPlayer extends PlayerImpl {
     protected otherPlayer() {
         return new BluePlayer();
     }
+
+    changePlayer() {
+        return new BluePlayer();
+    }
 }

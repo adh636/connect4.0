@@ -11,8 +11,8 @@
     'rxjs':                       'node_modules/rxjs',
     'typescript': 'node_modules/typescript/lib/typescript.js',
     'systemjs': 'node_modules/systemjs/dist/system.js',
-    'system-polyfills': 'node_modules/systemjs/dist/system-polyfills.js'
-
+    'system-polyfills': 'node_modules/systemjs/dist/system-polyfills.js',
+    'lodash': 'node_modules/lodash/lodash.js'
   };
   // packages tells the System loader how to load when no filename and/or no extension
   var packages = {
